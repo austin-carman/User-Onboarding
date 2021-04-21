@@ -29,6 +29,20 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled)
 
 
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users')
+      .then(res => {
+        setUsers([...users, newUser])
+        setFormValues(initialFormValue)
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+    
+  }
+
   const inputChange = (name, value) => {
     yup
       .reach(schema, name)
@@ -50,8 +64,7 @@ function App() {
       password: formValues.password.trim(),
       terms: formValues.terms,
     }
-    setUsers([...users, newUser])
-    setFormValues(initialFormValue)
+    postNewUser(newUser)
   }
 
   useEffect(() => {
@@ -60,8 +73,9 @@ function App() {
     })
   },[formValues])
 
+
   return (
-    <div>
+    <div className='app-container'>
       <h1>New User</h1>
       <Form values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors} />
       {
@@ -69,6 +83,7 @@ function App() {
           return <User key={index} details={user} />
         })
       }
+
     </div>
     
   )
