@@ -1,16 +1,16 @@
 import React from 'react'
 
 
-export default function Form(props) {
+export default function Form(props) { // step 3: props and build out the form in JSX portion
     const { values, submit, change, errors, disabled } = props
 
-    const toChange = (evt) => {
+    const toChange = (evt) => { //step 4: change function to handle onChange event.
         const { name, value, type, checked } = evt.target
         const inputValue = type === 'checkbox' ? checked : value
         change(name, inputValue)
     }
 
-    const toSubmit = (evt) => {
+    const toSubmit = (evt) => { // step 5: prevent default for submit button to refresh the page. Call submit function
         evt.preventDefault()
         submit()
     }

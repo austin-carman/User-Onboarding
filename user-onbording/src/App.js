@@ -24,17 +24,17 @@ const initialFormErrors = {
 }
 const initialDisabled = true
 
-function App() {
-  const [formValues, setFormValues] = useState(initialFormValue);
-  const [users, setUsers] = useState(initialUsers)
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
-  const [disabled, setDisabled] = useState(initialDisabled)
+function App() {  // step 1: slices of state
+  const [formValues, setFormValues] = useState(initialFormValue); // formValues is what the user enters/selects in the form
+  const [users, setUsers] = useState(initialUsers) // this will be the users from the api rendered to the Dom
+  const [formErrors, setFormErrors] = useState(initialFormErrors) // yup used to validate then set errors to display
+  const [disabled, setDisabled] = useState(initialDisabled) // this is to disable button until all formValues are completed
 
 
-  const postNewUser = newUser => {
-    axios.post('https://reqres.in/api/users')
+  const postNewUser = newUser => { // step 8: post new data to the api, 
+    axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        setUsers([...users, newUser])
+        setUsers([...users, res.data])
         setFormValues(initialFormValue)
         console.log(res.data);
       })
@@ -45,7 +45,7 @@ function App() {
     
   }
 
-  const inputChange = (name, value) => {
+  const inputChange = (name, value) => { // step 6: pass in arguments from change function in step 4. Validate forms using yup
     yup
       .reach(schema, name)
       .validate(value)
@@ -59,7 +59,7 @@ function App() {
     setFormValues({...formValues, [name]: value})
   }
 
-  const formSubmit = () => {
+  const formSubmit = () => { // step 7: upon submitting, build out the structure for new data. Invoke function to post to API
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
@@ -77,7 +77,7 @@ function App() {
   },[formValues])
 
 
-  return (
+  return ( // step 2: begin rendering the form/JSX and pass in needed props
     <div className='app-container'>
       <h1>New User</h1>
       <Form values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors} />
@@ -86,6 +86,7 @@ function App() {
           return <User key={index} details={user} />
         })
       }
+      {/* {/* <pre>{JSON.stringify(users)}</pre> */}
     </div>
     
   )
