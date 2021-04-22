@@ -17,33 +17,49 @@ export default function Form(props) {
 
 
     return(
-        <form className= '' onSubmit={toSubmit}>
-            <div>
-                <label> Name:
+        <form className= 'form' onSubmit={toSubmit}>
+            <div className='inputs'>
+                <label className='label'> Name:
                     <input
                         type='text'
                         name='name'
                         value={values.name}
                         onChange={toChange}
-                    />
+                        placeholder='Name'
+                        />
                 </label>
-                <label> Email:
+
+                <label className='label'> Email:
                     <input
                         type='email'
                         name='email'
                         value={values.email}
                         onChange={toChange}
-                    />
+                        placeholder='Email'
+                        />
                 </label>
-                <label> Password:
+
+                <label className='label'> Password:
                     <input
                         type='text'
                         name='password'
                         value={values.password}
                         onChange={toChange}
-                    />
+                        placeholder='Password'
+                        />
                 </label>
-                <label> 
+
+                <label className='label'> Confirm Password:
+                    <input
+                        type='text'
+                        name='confirmPassword'
+                        value={values.confirmPassword}
+                        onChange={toChange}
+                        placeholder='Confirm Password'
+                        />
+                </label>
+
+                <label className='checkbox'> 
                     <input
                         type='checkbox'
                         name='terms'
@@ -52,13 +68,13 @@ export default function Form(props) {
                     />
                     Agree to Terms of Service
                 </label>
-                <button disabled={disabled}>Submit</button>
                 <div className='errors'>
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.terms}</div>
                 </div>
+                <button className='submit-form' disabled={disabled}>Submit</button>
             </div>
         </form>
     )

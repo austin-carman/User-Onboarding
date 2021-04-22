@@ -11,6 +11,7 @@ const initialFormValue = {
   name: '',
   email: '',
   password: '',
+  confirmPassword: '',
   terms: '',
 }
 const initialUsers = [];
@@ -18,6 +19,7 @@ const initialFormErrors = {
   name: '',
   email: '',
   password: '',
+  confirmPassword: '',
   terms: '',
 }
 const initialDisabled = true
@@ -62,6 +64,7 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
+      confirmPassword: formValues.confirmPassword.trim(),
       terms: formValues.terms,
     }
     postNewUser(newUser)
@@ -83,7 +86,6 @@ function App() {
           return <User key={index} details={user} />
         })
       }
-
     </div>
     
   )

@@ -12,7 +12,12 @@ export default yup.object().shape({
     password: yup
         .string()
         .required('Password is required')
-        .min(3, 'Password must contain at least 5 characters'),
+        .min(5, 'Password must contain at least 5 characters'),
+    confirmPassword: yup
+        .string()
+        .required('Please confirm your password')
+        .min(5, 'Password must contain at least 5 characters')
+        .oneOf([yup.ref('password'), null], 'Passwords must match'),
     terms: yup
         .boolean()
         .oneOf([true], 'Please accept terms to submit')
