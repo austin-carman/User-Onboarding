@@ -53,7 +53,5 @@ describe('forms app', () => {
         submitBtn().should('be.disabled');
 
     });
-
-
 });
 
