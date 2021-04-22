@@ -31,7 +31,7 @@ function App() {  // step 1: slices of state
   const [disabled, setDisabled] = useState(initialDisabled) // this is to disable button until all formValues are completed
 
 
-  const postNewUser = newUser => { // step 8: post new data to the api, 
+  const postNewUser = newUser => { // step 8: post new data from user form to the api, changing user state to the data from api, resetting the from values
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
         setUsers([...users, res.data])
@@ -40,9 +40,7 @@ function App() {  // step 1: slices of state
       })
       .catch(err => {
         console.log(err);
-      })
-
-    
+      }) 
   }
 
   const inputChange = (name, value) => { // step 6: pass in arguments from change function in step 4. Validate forms using yup
