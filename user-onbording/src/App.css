@@ -1,0 +1,40 @@
+/* * {
+    border: 1px solid blue;
+} */
+
+.app-container {
+    text-align: center;
+}
+
+.inputs{
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    margin: 3% auto;
+}
+.label {
+    padding: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.checkbox {
+    padding: 5%;
+}
+.submit-form {
+    margin: 5%;
+    width: 40%;
+    padding: 2%;
+    align-self: center;
+}
+.errors {
+    color: red;
+}
+
+.user-card {
+    width: 20%;
+    border: 1px solid grey;
+    margin: 1% auto;
+    box-shadow: 1px 1px 10px grey;
+
+}
